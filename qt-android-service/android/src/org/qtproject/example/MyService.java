@@ -28,12 +28,19 @@ public class MyService extends QtService {
   public int onStartCommand(Intent intent, int flags, int start_id) {
     String action = intent.getAction();
     Log.i(LOG_TAG, "onStartCommand " + action);
-    if (action.equals(Constants.ACTION.START))
-      start_foreground_service();
-    else if (action.equals(Constants.ACTION.STOP))
-      stop_foreground_service();
 
-    return START_STICKY;
+    int rc =  super.onStartCommand(intent, flags, start_id);
+
+    if (action.equals(Constants.ACTION.START))
+      // start_foreground_service();
+      NativeFunctions.ServiceServerStartTimer();
+    else if (action.equals(Constants.ACTION.STOP))
+      // stop_foreground_service();
+      NativeFunctions.ServiceServerStopTimer();
+
+    return rc;
+
+    // return START_STICKY;
   }
 
   @Override
@@ -45,8 +52,9 @@ public class MyService extends QtService {
   @Override
   public IBinder onBind(Intent intent) {
     Log.i(LOG_TAG, "onBind");
+    return super.onBind(intent);
     // Used only in case of bound services.
-    return null;
+    // return null;
   }
 
   private void start_foreground_service() {

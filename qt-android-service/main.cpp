@@ -1,16 +1,17 @@
 /**************************************************************************************************/
 
+#include "android_activity.h"
+#include "service_application.h"
+
 #include <QCoreApplication>
 #include <QGuiApplication>
 #include <QObject>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
 #include <QString>
 #include <QtAndroid>
 #include <QtAndroidExtras/QAndroidJniObject>
 #include <QtDebug>
-#include <QQmlContext>
-
-#include "android_activity.h"
 
 /**************************************************************************************************/
 
@@ -21,8 +22,7 @@ int main(int argc, char *argv[])
     qInfo() << "argv" << i << argv[i];
 
   if (QString(argv[1]) == QLatin1Literal("-service")) {
-    QCoreApplication app(argc, argv);
-
+    ServiceApplication app(argc, argv);
     return app.exec();
   } else {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);

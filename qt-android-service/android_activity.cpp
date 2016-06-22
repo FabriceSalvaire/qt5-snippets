@@ -17,6 +17,10 @@ AndroidActivity::~AndroidActivity()
 {
 }
 
+// http://code.qt.io/cgit/qt/qtbase.git/commit/?h=5.7&id=efcf1dec4992bf7aab5bf1f0f4c0ee8c54030465
+// http://code.qt.io/cgit/qt/qtandroidextras.git/commit/?h=5.7&id=e057ce322bae9fba6b9ac6864162aba48b8e7407
+// QtAndroid::androidService()
+
 void
 AndroidActivity::start_service()
 {
